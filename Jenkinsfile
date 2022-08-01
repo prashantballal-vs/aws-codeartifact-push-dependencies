@@ -12,7 +12,9 @@ pipeline {
         stage ('Build Stage') {
             steps {
             	echo '1'
-           		sh 'gradle build'
+           		withGradle {
+    				sh './gradlew build'
+  				}
             }
         }
     }
