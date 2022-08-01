@@ -29,7 +29,7 @@ publishing {
       mavenJava(MavenPublication) {
           groupId = 'org.gradle.sample'
           artifactId = 'library'
-          version = '1.3'
+          version = '1.4'
           from components.java
       }
   }
