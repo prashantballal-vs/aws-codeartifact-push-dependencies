@@ -10,7 +10,7 @@ pipeline {
         GIT_COMMIT_HASH = GIT_COMMIT.take(6)
         CURRENT_BUILD_DISPLAY="0.1.${BUILD_NUMBER}"
         PROJECT_FOLDER="."
-        PROJECT_NAME="cms-services"
+        PROJECT_NAME="aws-codeartifact-pull-dependencies"
 
 		//Adding default values for env variables
 		GRADLE_JAVA_HOME="/opt/java/openjdk"
