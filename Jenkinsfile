@@ -8,7 +8,7 @@ pipeline {
             steps {
             	echo '1'
            		withGradle {
-    				sh './gradlew build'
+    				bat './gradlew build'
   				}
             }
         }
