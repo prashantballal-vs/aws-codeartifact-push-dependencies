@@ -5,7 +5,7 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                withGradle(gradle : 'gradle_7_4_1') {
+                withGradle(maven : 'gradle_7_4_1') {
                     sh 'gradle clean compile'
                 }
             }
