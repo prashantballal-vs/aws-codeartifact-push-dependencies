@@ -14,7 +14,7 @@ pipeline {
             steps {
             	echo '2'
             	script {
-            	    "for /f %i in ('aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text') do set CODEARTIFACT_AUTH_TOKEN=%i"
+            	    bat "for /f %i in ('aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text') do set CODEARTIFACT_AUTH_TOKEN=%i"
             	}
 
             	bat "for /f %i in ('aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text') do set CODEARTIFACT_AUTH_TOKEN=%i"
