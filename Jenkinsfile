@@ -13,11 +13,5 @@ pipeline {
            		sh 'gradle build'
             }
         }
-
-        /*stage ('Deployment Stage') {
-            steps {
-            	sh 'mvn deploy'
-            }
-        }*/
     }
 }
