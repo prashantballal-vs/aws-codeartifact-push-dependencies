@@ -14,7 +14,7 @@ pipeline {
             steps {
             	echo '2'
            		withGradle {
-           			bat './D://PRACTICE//aws-codeartifact-push-dependencies'
+           			//bat './D://PRACTICE//aws-codeartifact-push-dependencies'
     				bat './gradlew publish'
   				}
             }
