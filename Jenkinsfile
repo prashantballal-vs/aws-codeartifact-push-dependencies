@@ -6,7 +6,7 @@ pipeline {
             steps {
             	echo 'Project build started.'
            		withGradle {
-    				bat './gradlew build'
+    				sh './gradlew build'
   				}
   				echo 'Project build finished.'
             }
@@ -15,7 +15,7 @@ pipeline {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
            		withGradle {
-    				bat './gradlew publish'
+    				sh './gradlew publish'
   				}
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
