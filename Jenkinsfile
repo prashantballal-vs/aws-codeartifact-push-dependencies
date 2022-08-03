@@ -5,9 +5,9 @@ pipeline {
         stage ('Build Stage') {
             steps {
             	echo 'Project build started.'
-           		withGradle {
+           		
     				sh './gradlew build'
-  				}
+  				
   				echo 'Project build finished.'
             }
         }
