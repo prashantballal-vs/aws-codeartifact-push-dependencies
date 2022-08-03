@@ -5,7 +5,7 @@ pipeline {
         stage ('Build Stage') {
             steps {
             	echo 'Project build started.'
-           		
+           			sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text`'
     				sh './gradlew build'
   				
   				echo 'Project build finished.'
