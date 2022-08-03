@@ -11,6 +11,11 @@ pipeline {
   				echo 'Project build finished.'
             }
         }
+        stage ('Auth Token Stage') {
+            steps {
+           			sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --region ap-south-1 --query authorizationToken --output text`'
+            }
+        }
         stage ('Publish Stage') {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
