@@ -30,7 +30,7 @@ afterEvaluate {project ->
 				url 'https://company-domain-121322708209.d.codeartifact.ap-south-1.amazonaws.com/maven/MyTestRepo01/'
 				credentials {
 					username "aws"
-					password "printenv CODEARTIFACT_AUTH_TOKEN"
+					password CODEARTIFACT_AUTH_TOKEN
 				}
 			}
 		}
