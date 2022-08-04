@@ -35,6 +35,7 @@ pipeline {
             	echo "CODEARTIFACT_AUTH_TOKEN: ${env.CODEARTIFACT_AUTH_TOKEN}"
             	sh 'export ppb11=prashant'
             	echo "ppb11: ${env.ppb11}"
+            	echo sh(script: 'env|sort', returnStdout: true)
             	sh 'printenv ppb11'
             	sh 'printenv CODEARTIFACT_AUTH_TOKEN'
             }
