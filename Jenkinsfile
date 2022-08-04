@@ -7,6 +7,8 @@ pipeline {
     	AWS_ACCESS_KEY_ID = "AKIARYP3FTTYZXSU6KF3"
     	AWS_SECRET_ACCESS_KEY = "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"
     	AWS_DEFAULT_REGION = "ap-south-1"
+    	CODEARTIFACT_AUTH_TOKEN = ""
+    	ppb11 = "Ballal"
     }
 
     stages {    
