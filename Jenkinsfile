@@ -37,7 +37,7 @@ pipeline {
         stage ('Publish Stage') {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
-    			sh './gradlew publish'
+    			sh './gradlew publish --stacktrace'
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
         }
