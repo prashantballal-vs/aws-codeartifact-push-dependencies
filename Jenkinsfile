@@ -7,7 +7,6 @@ pipeline {
     	AWS_ACCESS_KEY_ID = "AKIARYP3FTTYZXSU6KF3"
     	AWS_SECRET_ACCESS_KEY = "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"
     	AWS_DEFAULT_REGION = "ap-south-1"
-    	env.CODEARTIFACT_AUTH_TOKEN = ""
     }
 
     stages {    
@@ -38,7 +37,7 @@ pipeline {
         stage ('Publish Stage') {
             steps {
             	echo "Publishing dependencies to AWS CodeArtifact started."
-            	echo "CODEARTIFACT_AUTH_TOKEN: ${env.CODEARTIFACT_AUTH_TOKEN}"
+            	echo "CODEARTIFACT_AUTH_TOKEN: ${CODEARTIFACT_AUTH_TOKEN}"
     			sh './gradlew publish'
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
