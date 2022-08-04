@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage ('Build Stage') {
             steps {
+            	echo "Setting current build to ${CURRENT_BUILD_DISPLAY}"
             	echo 'Project build started.'
     			sh './gradlew build'
   				echo 'Project build finished.'
