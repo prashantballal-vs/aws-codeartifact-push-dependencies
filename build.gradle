@@ -1,7 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.7.2'
 	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
-	id 'java-library'
+	id 'java'
 	id 'maven-publish'
 }
 
@@ -25,16 +25,7 @@ tasks.named('test') {
 
 afterEvaluate {project ->
 	publishing {
-  		publications {
-      		mavenJava(MavenPublication) {
-          		groupId = 'org.gradle.sample'
-          		artifactId = 'library'
-          		version = '1.1'
-          		from components.java
-      		}
-  		}
-  
-  		repositories {
+		repositories {
 			maven {
 				url 'https://company-domain-121322708209.d.codeartifact.ap-south-1.amazonaws.com/maven/MyTestRepo01/'
 				credentials {
@@ -43,5 +34,13 @@ afterEvaluate {project ->
 				}
 			}
 		}
+  		publications {
+      		mavenJava(MavenPublication) {
+          		groupId = 'org.gradle.sample.jenkins'
+          		artifactId = 'library'
+          		version = '1.0.1'
+          		from components.java
+      		}
+  		}
 	}
 }
