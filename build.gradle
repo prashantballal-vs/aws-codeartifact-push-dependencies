@@ -24,24 +24,24 @@ tasks.named('test') {
 }
 
 afterEvaluate {project ->
-publishing {
-  publications {
-      mavenJava(MavenPublication) {
-          groupId = 'org.gradle.sample.jenkins'
-          artifactId = 'library'
-          version = '1.0.1'
-          from components.java
-      }
-  }
+	publishing {
+  		publications {
+      		mavenJava(MavenPublication) {
+          		groupId = 'org.gradle.sample'
+          		artifactId = 'library'
+          		version = '1.4'
+          		from components.java
+      		}
+  		}
   
-  repositories {
-      maven {
-          url 'https://company-domain-121322708209.d.codeartifact.ap-south-1.amazonaws.com/maven/MyTestRepo01/'
-          credentials {
-              username "aws"
-              password System.env.CODEARTIFACT_AUTH_TOKEN
-          }
-      }
-  }
-}
+  		repositories {
+			maven {
+				url 'https://company-domain-121322708209.d.codeartifact.ap-south-1.amazonaws.com/maven/MyTestRepo01/'
+				credentials {
+					username "aws"
+					password System.env.CODEARTIFACT_AUTH_TOKEN
+				}
+			}
+		}
+	}
 }
