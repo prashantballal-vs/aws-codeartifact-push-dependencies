@@ -1,7 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.7.2'
 	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
-	id 'java'
+	id 'java-library'
 	id 'maven-publish'
 }
 
@@ -23,7 +23,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-afterEvaluate {project ->
+//afterEvaluate {project ->
 publishing {
   publications {
       mavenJava(MavenPublication) {
@@ -44,4 +44,4 @@ publishing {
       }
   }
 }
-}
+//}
