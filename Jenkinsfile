@@ -4,6 +4,9 @@ pipeline {
     environment {
     	CURRENT_BUILD_DISPLAY="0.1.${BUILD_NUMBER}"
     	PROJECT_FOLDER="."
+    	sh 'export AWS_ACCESS_KEY_ID=AKIARYP3FTTYZXSU6KF3'
+    	sh 'export AWS_SECRET_ACCESS_KEY=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'
+    	sh 'export AWS_DEFAULT_REGION=ap-south-1'
     }
 
     stages {
@@ -20,10 +23,8 @@ pipeline {
             	//withAWS(credentials: 'prashanttballal@gmail.com',  region: 'ap-south-1') {
             	//	sh 'aws configure'
             	//}
-            	sh 'export AWS_ACCESS_KEY_ID=AKIARYP3FTTYZXSU6KF3'
-    			sh 'export AWS_SECRET_ACCESS_KEY=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'
-    			//sh 'export AWS_DEFAULT_REGION=ap-south-1'
-           		sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --region ap-south-1 --query authorizationToken --output text`'
+            	
+           		sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text`'
             }
         }
         stage ('Publish Stage') {
