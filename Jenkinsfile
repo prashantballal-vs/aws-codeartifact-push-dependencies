@@ -33,6 +33,7 @@ pipeline {
 				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
            		sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text`'
             	echo "CODEARTIFACT_AUTH_TOKEN: ${env.CODEARTIFACT_AUTH_TOKEN}"
+            	sh 'printenv CODEARTIFACT_AUTH_TOKEN'
             }
         }
         stage ('Publish Stage') {
