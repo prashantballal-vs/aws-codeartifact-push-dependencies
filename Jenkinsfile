@@ -32,7 +32,7 @@ pipeline {
         stage ('Publish Stage') {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
-    			sh './gradle clean build publish'
+    			sh './gradlew clean build publish'
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
         }
