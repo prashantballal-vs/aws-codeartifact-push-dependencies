@@ -14,7 +14,7 @@ pipeline {
             steps {
             	echo "Setting current build to ${CURRENT_BUILD_DISPLAY}"
             	echo 'Project build started.'
-    			sh './gradle build'
+    			sh './gradlew build'
   				echo 'Project build finished.'
             }
         }
