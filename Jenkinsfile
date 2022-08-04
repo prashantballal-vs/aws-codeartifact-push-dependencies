@@ -4,6 +4,9 @@ pipeline {
     environment {
     	CURRENT_BUILD_DISPLAY = "0.1.${BUILD_NUMBER}"
     	PROJECT_FOLDER = "."
+    	AWS_ACCESS_KEY_ID = "AKIARYP3FTTYZXSU6KF3"
+    	AWS_SECRET_ACCESS_KEY = "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"
+    	AWS_DEFAULT_REGION = "ap-south-1"
     }
 
     stages {
@@ -20,12 +23,10 @@ pipeline {
             	//withAWS(credentials: 'prashanttballal@gmail.com',  region: 'ap-south-1') {
             	//	sh 'aws configure'
             	//}
-            	sh 'export AWS_ACCESS_KEY_ID=AKIARYP3FTTYZXSU6KF3'
-    			sh 'export AWS_SECRET_ACCESS_KEY=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'
-    			sh 'export AWS_DEFAULT_REGION=ap-south-1'
-            	echo "AWS_ACCESS_KEY_ID ${AWS_ACCESS_KEY_ID}"
-            	echo "AWS_SECRET_ACCESS_KEY ${AWS_SECRET_ACCESS_KEY}"
-            	echo "AWS_DEFAULT_REGION ${AWS_DEFAULT_REGION}"
+            	
+            	echo "AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}"
+            	echo "AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}"
+            	echo "AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}"
             	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
 				sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
 				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
