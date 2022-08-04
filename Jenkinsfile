@@ -23,8 +23,10 @@ pipeline {
             	//withAWS(credentials: 'prashanttballal@gmail.com',  region: 'ap-south-1') {
             	//	sh 'aws configure'
             	//}
-            	
-           		sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --region ap-south-1 --query authorizationToken --output text`'
+            	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
+				sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
+				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
+           		sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text`'
             }
         }
         stage ('Publish Stage') {
