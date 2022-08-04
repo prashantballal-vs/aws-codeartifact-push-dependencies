@@ -23,7 +23,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-afterEvaluate {project ->
+//afterEvaluate {project ->
 publishing {
   publications {
       mavenJava(MavenPublication) {
@@ -44,4 +44,4 @@ publishing {
       }
   }
 }
-}
+//}
