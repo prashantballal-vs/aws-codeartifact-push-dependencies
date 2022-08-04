@@ -8,7 +8,7 @@ pipeline {
     	AWS_SECRET_ACCESS_KEY = "DKUJiymRe92WSW1SJ4qHDUnd6BAy0OPlF6FKN02j"
     	AWS_DEFAULT_REGION = "ap-south-1"
     	CODEARTIFACT_AUTH_TOKEN = null
-    	ppb11 = "Ballal"
+    	//ppb11 = "Ballal"
     }
 
     stages {    
@@ -34,12 +34,13 @@ pipeline {
 				sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
 				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
            		sh 'CODEARTIFACT_AUTH_TOKEN= aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text'
+            	
             	echo "CODEARTIFACT_AUTH_TOKEN: ${env.CODEARTIFACT_AUTH_TOKEN}"
-            	sh 'export ppb11=prashant'
-            	echo "ppb11: ${env.ppb11}"
+            	sh 'export ppb11="prashant"'
+            	//echo "ppb11: ${env.ppb11}"
             	echo sh(script: 'env|sort', returnStdout: true)
-            	sh 'printenv ppb11'
-            	sh 'printenv CODEARTIFACT_AUTH_TOKEN'
+            	//sh 'printenv ppb11'
+            	//sh 'printenv CODEARTIFACT_AUTH_TOKEN'
             }
         }
         stage ('Publish Stage') {
