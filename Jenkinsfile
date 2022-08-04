@@ -23,6 +23,9 @@ pipeline {
             	//withAWS(credentials: 'prashanttballal@gmail.com',  region: 'ap-south-1') {
             	//	sh 'aws configure'
             	//}
+            	echo "AWS_ACCESS_KEY_ID ${AWS_ACCESS_KEY_ID}"
+            	echo "AWS_SECRET_ACCESS_KEY ${AWS_SECRET_ACCESS_KEY}"
+            	echo "AWS_DEFAULT_REGION ${AWS_DEFAULT_REGION}"
             	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
 				sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
 				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
