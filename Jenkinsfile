@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    environment {
+    	CURRENT_BUILD_DISPLAY="0.1.${BUILD_NUMBER}"
+    	PROJECT_FOLDER="."
+    }
 
     stages {
         stage ('Build Stage') {
