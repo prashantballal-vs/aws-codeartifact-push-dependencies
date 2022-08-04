@@ -20,6 +20,9 @@ pipeline {
             	//withAWS(credentials: 'prashanttballal@gmail.com',  region: 'ap-south-1') {
             	//	sh 'aws configure'
             	//}
+            	sh 'export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE'
+    			sh 'export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+    			sh 'ULT_REGION=us-west-2'
            		sh 'export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --region ap-south-1 --query authorizationToken --output text`'
             }
         }
