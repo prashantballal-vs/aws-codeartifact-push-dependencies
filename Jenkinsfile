@@ -9,7 +9,12 @@ pipeline {
     	AWS_DEFAULT_REGION = "ap-south-1"
     }
 
-    stages {
+    stages {    
+    	stage ('Clean Stage') {
+            steps {
+    			sh './gradlew clean'
+            }
+        }
         stage ('Build Stage') {
             steps {
             	echo "Setting current build to ${CURRENT_BUILD_DISPLAY}"
@@ -18,7 +23,7 @@ pipeline {
   				echo 'Project build finished.'
             }
         }
-        stage ('Auth Token Stage') {
+        stage ('Auth Stage') {
             steps {
             	echo "AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}"
             	echo "AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}"
@@ -32,7 +37,7 @@ pipeline {
         stage ('Publish Stage') {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
-    			sh './gradlew clean build publish'
+    			sh './gradlew publish'
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
         }

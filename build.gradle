@@ -23,13 +23,13 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-//afterEvaluate {project ->
+afterEvaluate {project ->
 publishing {
   publications {
       mavenJava(MavenPublication) {
           groupId = 'org.gradle.sample.jenkins'
           artifactId = 'library'
-          version = '1.1'
+          version = '1.0.1'
           from components.java
       }
   }
@@ -44,4 +44,4 @@ publishing {
       }
   }
 }
-//}
+}
