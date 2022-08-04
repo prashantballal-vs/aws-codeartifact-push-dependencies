@@ -20,10 +20,6 @@ pipeline {
         }
         stage ('Auth Token Stage') {
             steps {
-            	//withAWS(credentials: 'prashanttballal@gmail.com',  region: 'ap-south-1') {
-            	//	sh 'aws configure'
-            	//}
-            	
             	echo "AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}"
             	echo "AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}"
             	echo "AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}"
@@ -36,9 +32,7 @@ pipeline {
         stage ('Publish Stage') {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
-           		withGradle {
-    				sh './gradlew publish'
-  				}
+    			sh './gradlew publish'
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
         }
