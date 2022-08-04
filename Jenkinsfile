@@ -14,7 +14,7 @@ pipeline {
             steps {
             	echo "Setting current build to ${CURRENT_BUILD_DISPLAY}"
             	echo 'Project build started.'
-    			sh './gradlew build'
+    			sh './gradle build'
   				echo 'Project build finished.'
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage ('Publish Stage') {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
-    			sh './gradlew publish'
+    			sh './gradle clean build publish'
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
         }
