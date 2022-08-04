@@ -37,6 +37,7 @@ pipeline {
         stage ('Publish Stage') {
             steps {
             	echo 'Publishing dependencies to AWS CodeArtifact started.'
+            	echo 'CODEARTIFACT_AUTH_TOKEN: ${env.CODEARTIFACT_AUTH_TOKEN}'
     			sh './gradlew publish --stacktrace'
   				echo 'Publishing dependencies to AWS CodeArtifact finished.'
             }
