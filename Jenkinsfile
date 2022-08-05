@@ -1,58 +1,43 @@
 pipeline {
     agent any
-    
     environment {
-    	CURRENT_BUILD_DISPLAY = "0.1.${BUILD_NUMBER}"
+    	BUILD_VERSION = "1.${BUILD_NUMBER}"
+    	GROUP_ID = "org.gradle.sample.jenkinsfile"
     	PROJECT_FOLDER = "."
     	AWS_ACCESS_KEY_ID = "AKIARYP3FTTYZXSU6KF3"
     	AWS_SECRET_ACCESS_KEY = "DKUJiymRe92WSW1SJ4qHDUnd6BAy0OPlF6FKN02j"
     	AWS_DEFAULT_REGION = "ap-south-1"
-    	//CODEARTIFACT_AUTH_TOKEN = null
-    	//ppb11 = "Ballal"
     }
-
     stages {    
-    	stage ('Clean Stage') {
+        stage ('Clean & Build Stage') {
             steps {
-    			sh './gradlew clean'
+            	echo "Started cleaning & building the project."
+            	echo "Setting current build to ${BUILD_VERSION}"
+    			sh './gradlew clean build'
+  				echo "Finished cleaning & building the project."
             }
         }
-        stage ('Build Stage') {
+        stage ('AWS Configuration Stage') {
             steps {
-            	echo "Setting current build to ${CURRENT_BUILD_DISPLAY}"
-            	echo 'Project build started.'
-    			sh './gradlew build'
-  				echo 'Project build finished.'
-            }
-        }
-        stage ('Auth Stage') {
-            steps {
-            	echo "AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}"
-            	echo "AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}"
-            	echo "AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}"
+            	echo "Started configuring AWS."
             	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
 				sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
 				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
-				script {
-					//sh 'export env.CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text`'
-					env.CODEARTIFACT_AUTH_TOKEN = "${sh(script:'aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text', returnStdout: true).trim()}"
-				}
-           		
-            	
-            	echo "CODEARTIFACT_AUTH_TOKEN: ${env.CODEARTIFACT_AUTH_TOKEN}"
-            	//${ppb11} = sh 'export ppb11=prashant'
-            	//echo "ppb11: ${env.ppb11}"
-            	//echo sh(script: 'env|sort', returnStdout: true)
-            	//sh 'printenv ppb11'
-            	//sh 'printenv CODEARTIFACT_AUTH_TOKEN'
+				echo "Finished configuring AWS."
             }
         }
-        stage ('Publish Stage') {
+        stage ('AWS CodeArtifact Token Stage') {
+        	echo "Started creating authentication token for AWS CodeArtifact."
+        	script {
+				env.CODEARTIFACT_AUTH_TOKEN = "${sh(script:'aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text', returnStdout: true).trim()}"
+			}
+			echo "Finished creating authentication token for AWS CodeArtifact."
+        }
+        stage ('Publish Dependencies Stage') {
             steps {
-            	echo "Publishing dependencies to AWS CodeArtifact started."
-            	echo "CODEARTIFACT_AUTH_TOKEN: ${env.CODEARTIFACT_AUTH_TOKEN}"
+            	echo "Started publishing dependencies to AWS CodeArtifact."
     			sh './gradlew publish'
-  				echo 'Publishing dependencies to AWS CodeArtifact finished.'
+  				echo "Finished publishing dependencies to AWS CodeArtifact."
             }
         }
     }
