@@ -27,11 +27,13 @@ pipeline {
             }
         }
         stage ('AWS CodeArtifact Token Stage') {
-        	echo "Started creating authentication token for AWS CodeArtifact."
-        	script {
-				env.CODEARTIFACT_AUTH_TOKEN = "${sh(script:'aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text', returnStdout: true).trim()}"
-			}
-			echo "Finished creating authentication token for AWS CodeArtifact."
+        	steps {
+        	    echo "Started creating authentication token for AWS CodeArtifact."
+        		script {
+					env.CODEARTIFACT_AUTH_TOKEN = "${sh(script:'aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text', returnStdout: true).trim()}"
+				}
+				echo "Finished creating authentication token for AWS CodeArtifact."
+        	}
         }
         stage ('Publish Dependencies Stage') {
             steps {
