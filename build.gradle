@@ -36,9 +36,9 @@ afterEvaluate {project ->
 		}
   		publications {
       		mavenJava(MavenPublication) {
-          		groupId = System.env.GROUP_ID
-          		artifactId = 'library'
-          		version = System.env.BUILD_VERSION
+          		groupId = "${GROUP_ID}"
+				artifactId = 'library'
+          		version = "${BUILD_VERSION}"
           		from components.java
       		}
   		}
