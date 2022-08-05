@@ -9,7 +9,7 @@ pipeline {
     	AWS_DEFAULT_REGION = "ap-south-1"
     }
     stages {    
-        stage ('Clean & Build Stage') {
+        stage ('Project Clean & Build Stage') {
             steps {
             	echo "Started cleaning & building the project."
             	echo "Setting current build to ${BUILD_VERSION}"
