@@ -4,9 +4,9 @@ pipeline {
     	BUILD_VERSION = "1.${BUILD_NUMBER}"
     	GROUP_ID = "org.gradle.sample.jenkinsfile"
     	PROJECT_FOLDER = "."
-    	//AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
-    	//AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-    	//AWS_DEFAULT_REGION = "ap-south-1"
+    	AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
+    	AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    	AWS_DEFAULT_REGION = "ap-south-1"
     }
     stages {    
         stage ('Project Clean & Build Stage') {
@@ -20,13 +20,9 @@ pipeline {
         stage ('AWS Configuration Stage') {
             steps {
             	echo "Started configuring AWS."
-            	withAWS(credentials: 'AWSCredentials', region: 'ap-south-1') {
-            		sh 'aws configure'                   
-            	}
-
-            	//sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
-				//sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
-				//sh 'aws configure set default.region $AWS_DEFAULT_REGION'
+            	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
+				sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
+				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
 				echo "Finished configuring AWS."
             }
         }
