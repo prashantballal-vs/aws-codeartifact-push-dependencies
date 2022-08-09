@@ -17,21 +17,23 @@ pipeline {
   				echo "Finished cleaning & building the project."
             }
         }
-        stage ('AWS Configuration Stage') {
-            steps {
-            	echo "Started configuring AWS."
-            	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
-				sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
-				sh 'aws configure set default.region $AWS_DEFAULT_REGION'
-				echo "Finished configuring AWS."
-            }
-        }
+        //stage ('AWS Configuration Stage') {
+        //    steps {
+        //    	echo "Started configuring AWS."
+        //    	sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
+		//		sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
+		//		sh 'aws configure set default.region $AWS_DEFAULT_REGION'
+		//		echo "Finished configuring AWS."
+        //    }
+        //}
         stage ('AWS CodeArtifact Token Stage') {
         	steps {
         	    echo "Started creating authentication token for AWS CodeArtifact."
-        		script {
-					env.CODEARTIFACT_AUTH_TOKEN = "${sh(script:'aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text', returnStdout: true).trim()}"
-				}
+        	    withAWS(credentials: 'AWSCredentials', region: 'us-east-1') {
+        	    	script {
+						env.CODEARTIFACT_AUTH_TOKEN = "${sh(script:'aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text', returnStdout: true).trim()}"
+					}
+        	    }
 				echo "Finished creating authentication token for AWS CodeArtifact."
         	}
         }
