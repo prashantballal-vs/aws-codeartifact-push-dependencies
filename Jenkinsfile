@@ -29,7 +29,7 @@ pipeline {
         stage ('AWS CodeArtifact Token Stage') {
         	steps {
         	    echo "Started creating authentication token for AWS CodeArtifact."
-        	    withAWS(credentials: 'AWSCredentials', region: 'us-east-1') {
+        	    withAWS(credentials: 'AWSCredentials', region: 'ap-south-1') {
         	    	script {
 						env.CODEARTIFACT_AUTH_TOKEN = "${sh(script:'aws codeartifact get-authorization-token --domain company-domain --domain-owner 121322708209 --query authorizationToken --output text', returnStdout: true).trim()}"
 					}
