@@ -20,7 +20,7 @@ pipeline {
         stage ('AWS Configuration Stage') {
             steps {
             	echo "Started configuring AWS."
-            	withAWS(credentials: 'AWS Credentials', region: 'ap-south-1') {
+            	withAWS(credentials: 'AWSCredentials', region: 'ap-south-1') {
             		sh 'aws configure'                   
             	}
 
