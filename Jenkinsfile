@@ -4,9 +4,9 @@ pipeline {
     	BUILD_VERSION = "1.${BUILD_NUMBER}"
     	GROUP_ID = "org.gradle.sample.jenkinsfile"
     	PROJECT_FOLDER = "."
-    	AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
-    	AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
-    	AWS_DEFAULT_REGION = "ap-south-1"
+    	//AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
+    	//AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    	//AWS_DEFAULT_REGION = "ap-south-1"
     }
     stages {    
         stage ('Project Clean & Build Stage') {
